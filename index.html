@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makan Malam Bareng Yuk!</title>
+    <style>
+        /* CSS - Desain & Warna */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Biru Malam */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 400px;
+            position: relative;
+        }
+
+        .sticker {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #btn-mau {
+            background-color: #3498db; /* Biru Terang */
+            color: white;
+        }
+
+        #btn-mau:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+
+        #btn-tidak {
+            background-color: #e74c3c;
+            color: white;
+            position: absolute;
+        }
+
+        /* Modal/Pesan Sukses */
+        #message-box {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-container">
+        <div class="sticker" id="emoji">🍽️</div>
+        
+        <div id="ask-content">
+            <h1>Makan malam bareng di resto nanti malam, yuk? 🌙✨</h1>
+            <div class="btn-group">
+                <button id="btn-mau" onclick="tampilkanPesan()">Mau!</button>
+                <button id="btn-tidak" onmouseover="pindahTombol()">Tidak</button>
+            </div>
+        </div>
+
+        <div id="message-box">
+            <h1>Asyik! Sampai jumpa nanti malam ya! 🥂💙</h1>
+            <p>Aku tunggu di restoran jam 19.00!</p>
+            <div class="sticker">🏃‍♂️💨</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript - Logika Interaktif
+        const btnTidak = document.getElementById('btn-tidak');
+        const askContent = document.getElementById('ask-content');
+        const messageBox = document.getElementById('message-box');
+        const emoji = document.getElementById('emoji');
+
+        // Fungsi membuat tombol "Tidak" lari saat didekati
+        function pindahTombol() {
+            // Menghitung batas area container agar tombol tidak keluar layar
+            const padding = 50;
+            const x = Math.random() * (window.innerWidth - btnTidak.offsetWidth - padding);
+            const y = Math.random() * (window.innerHeight - btnTidak.offsetHeight - padding);
+
+            btnTidak.style.position = 'fixed'; // Mengubah ke fixed agar bisa bebas pindah
+            btnTidak.style.left = x + 'px';
+            btnTidak.style.top = y + 'px';
+        }
+
+        // Fungsi saat tombol "Mau" diklik
+        function tampilkanPesan() {
+            askContent.style.display = 'none';
+            messageBox.style.display = 'block';
+            emoji.innerHTML = '🍲'; // Berubah jadi stiker makanan panas
+            
+            // Opsional: Hapus tombol tidak yang mungkin sedang melayang
+            btnTidak.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
